@@ -10,7 +10,7 @@ terraform {
   }
   backend "s3" {
     bucket = "carpenter-s3-carpenter-00126xx"
-    key    = "aws-vpc/terraform.tfstate"
+    key    = "aws-vpc-provider/terraform.tfstate"
     region = "us-east-1"
   }
 }
@@ -22,6 +22,22 @@ provider "aws" {
     tags = {
       owner      = "leandro"
       managed-by = "terraform"
+      region     = "eu-east-1"
+
+    }
+  }
+}
+
+
+provider "aws" {
+  alias  = "eua"
+  region = "eu-central-1"
+
+  default_tags {
+    tags = {
+      owner      = "leandro"
+      managed-by = "terraform"
+      region     = "eu-central-1"
     }
   }
 }

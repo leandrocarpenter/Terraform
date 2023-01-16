@@ -8,9 +8,10 @@ terraform {
       version = "3.73.0"
     }
   }
+
   backend "s3" {
     bucket = "carpenter-s3-carpenter-00126xx"
-    key    = "aws-vpc/terraform.tfstate"
+    key    = "aws-vm-provisioners/terraform.tfstate"
     region = "us-east-1"
   }
 }
@@ -23,5 +24,14 @@ provider "aws" {
       owner      = "leandro"
       managed-by = "terraform"
     }
+  }
+}
+
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    bucket = "carpenter-s3-carpenter-00126xx"
+    key    = "aws-vpc/terraform.tfstate"
+    region = "us-east-1"
   }
 }
