@@ -10,7 +10,7 @@ terraform {
   }
   backend "s3" {
     bucket = "carpenter-s3-carpenter-00126xx"
-    key    = "aws-vpc/terraform.tfstate"
+    key    = "aws-bucket-lifecycle/terraform.tfstate"
     region = "us-east-1"
   }
 }
